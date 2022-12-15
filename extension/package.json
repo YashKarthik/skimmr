@@ -1,0 +1,11 @@
+{
+  "name": "summarize",
+  "version": "0.0.0",
+  "description": "Browser extension that helps you skim articles.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yashkarthik",
+  "license": "MIT"
+}
