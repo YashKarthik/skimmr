@@ -2,5 +2,7 @@
 /node_modules/
 
 /*/.env
-/*/wrangler.toml
 /*/node_modules/
+
+# Local Netlify folder
+.netlify
