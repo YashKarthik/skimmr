@@ -2,13 +2,19 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const copyButton = document.getElementById('copy-button');
   const reloadButton = document.getElementById('reload-button');
 
-  const explanationText = document.getElementById('explanation-text').textContent;
+  const explanationElement = document.getElementById('explanation-text');
 
+  reloadButton.addEventListener('click', e => {alert(e)})
   copyButton.addEventListener('click', e => {
-    if (explanationText != "...") {
-      navigator.clipboard.writeText(explanationText);
+    explanationElement.textContent = 'hello';
+    if (explanationElement.textContent != "...") {
+      navigator.clipboard.writeText(explanationElement.textContent);
     }
   });
 
-  reloadButton.addEventListener('click', e => {alert(e)})
+  browser.storage.sync.get(['val1', 'val2'], function (data) {
+    explanationElement.textContent = data.val2;
+    console.log(data)
+  });
+
 });
