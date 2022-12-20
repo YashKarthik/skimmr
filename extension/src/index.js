@@ -1,20 +1,17 @@
 document.addEventListener("DOMContentLoaded", (e) => {
   const copyButton = document.getElementById('copy-button');
-  const reloadButton = document.getElementById('reload-button');
 
-  const explanationElement = document.getElementById('explanation-text');
-
-  reloadButton.addEventListener('click', e => {alert(e)})
-  copyButton.addEventListener('click', e => {
-    explanationElement.textContent = 'hello';
-    if (explanationElement.textContent != "...") {
-      navigator.clipboard.writeText(explanationElement.textContent);
-    }
+  const explanationBox = document.getElementById('explanation-text');
+  // put the summarized stuff into the text-box
+  chrome.storage.session.get(["selectedText"]).then((result) => {
+    explanationBox.innerText = result.selectedText;
   });
 
-  browser.storage.sync.get(['val1', 'val2'], function (data) {
-    explanationElement.textContent = data.val2;
-    console.log(data)
+  // Use copy button to copy content from the text-box
+  copyButton.addEventListener('click', _e => {
+    if (explanationBox.textContent != "...") {
+      navigator.clipboard.writeText(explanationBox.textContent);
+    }
   });
 
 });

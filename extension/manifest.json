@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Summarize",
     "version": "0.1.0",
 
@@ -12,7 +12,12 @@
     "permissions": [
       "activeTab",
       "contextMenus",
-      "storage"
+      "storage",
+      "scripting"
+    ],
+
+    "optional_host_permissions": [
+      "*://*/*"
     ],
     
     "content_scripts": [
@@ -24,22 +29,13 @@
     ],
 
     "background": {
-      "scripts": ["./src/background.js"],
-      "persistent": false
+      "service_worker": "./src/background.js"
     },
 
-    "browser_action": {
+    "action": {
         "default_icon": "./assets/logo.svg",
         "default_title": "Summarize",
         "default_popup": "./src/index.html"
-    },
-
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "addon@example.com",
-            "strict_min_version": "42.0"
-        }
     }
-
 }
 

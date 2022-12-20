@@ -64,7 +64,7 @@ const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) =
   try {
     const summarized = await openai.createCompletion({
       model: "text-curie-001",
-      prompt: `List the key points from this text: """${question}"""`,
+      prompt: `List the key points from the following paragraph: """${question}"""`,
       max_tokens: 100,
       temperature: 0,
     });
