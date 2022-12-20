@@ -1,6 +1,6 @@
 chrome.contextMenus.create({
-  id: "summarize.cc-menu",
-  title: "Summarize",
+  id: "skimmr.xyz-menu",
+  title: "Skimmr.xyz",
   contexts: ["selection"]
 });
 
