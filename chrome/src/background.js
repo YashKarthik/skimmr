@@ -1,6 +1,6 @@
 chrome.contextMenus.create({
   id: "skimmr.xyz-menu",
-  title: "Skimmr.xyz",
+  title: "Skimmr",
   contexts: ["selection"]
 });
 
@@ -9,7 +9,6 @@ function getSelectedText() {
 }
 
 chrome.contextMenus.onClicked.addListener(async (_info, _tab) => {
-
   const [ tab ] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
 
   const res = await chrome.scripting.executeScript(
@@ -21,17 +20,14 @@ chrome.contextMenus.onClicked.addListener(async (_info, _tab) => {
   const text = res[0].result;
 
   try {
-    const resStream = await fetch("http://localhost:8888/.netlify/functions/gpt-summarize", {
+    const resStream = await fetch("https://skimmr.netlify.app/.netlify/functions/gpt-summarize", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: text
     })
-
     const response = await resStream.json();
-    console.log(response)
-
     chrome.storage.session.set({ 'selectedText': response.message.slice(2,) });
     return true;
 
