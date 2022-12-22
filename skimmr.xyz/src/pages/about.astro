@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Faq from '../components/Faq.astro';
+---
+
+<Layout title="Skimmr">
+	<main class="m-auto mt-14 p-0">
+	    <h1 class="text-5xl font-extrabold m-0 pt-0 pb-14 text-center">
+        About
+      <a href="/" class="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500">
+        Skimmr
+      </a>
+    </h1>
+
+    <div class="flex flex-col gap-1">
+        
+      <Faq
+        question="How does Skimmr work for me?"
+        answer="When you select text and right-click, in the menu a Skimmr button will show up. Just click that and open the extension in the toolbar."
+      />
+
+      <Faq
+        question="How does Skimmr internally?"
+        answer="When you select text, right-click and click on the menu button. Skimmr takes the selected text and sends it to GPT-3. The response (from gpt-3) is what you see in the extension popup."
+      />
+
+        
+      <Faq
+        question="Is this free?"
+        answer="Yes. I might have to create a paid plan cuz using OpenAI's GPT-3 costs money."
+      />
+
+      <div class="flex flex-col p-5">
+      	<h2 class="m-0 text-lg font-semibold">
+          It keeps telling me to slow down.
+      	</h2>
+      
+      	<div class="mt-2 mb-0 text-sm flex flex-row">
+          <p>For now, you could</p>
+          <a 
+            class="px-1 underline decoration-wavy"
+            href="https://buymeacoffee.com/yashkarthik"
+            target="_blank"
+          >
+            Buy Me a Coffee.
+          </a>
+          <p>That'll help cover some costs. If you're a developer, follow the </p>
+          <a 
+            class="underline decoration-wavy px-1"
+            href="https://github.com/yashkarthik/skimmr"
+            target="_blank"
+          >
+            README.
+          </a>
+      	</div>
+      
+      </div>
+
+    </div>
+
+	</main>
+</Layout>
