@@ -1,9 +1,8 @@
 import * as dotenv from 'dotenv';
-import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import { Configuration, OpenAIApi } from "openai";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { eventNames } from 'process';
 
 dotenv.config();
 
@@ -37,7 +36,7 @@ const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) =
   const question = event.body;
 
   // Exit if the selected text is useless.
-  if (question === undefined || question.length < 7) {
+  if (question === undefined || question!.length < 7) {
     console.log('QUESTION TOO SHORT:', question)
     return {
       statusCode: 200,
@@ -46,13 +45,14 @@ const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) =
     }
   }
 
-  // Upstash rate-limiter
+  // Upstash rate-limiter. Remove if self-hosting
   const identifier = "api";
   console.log('asking ratelimiter')
   const success = ratelimit.limit(identifier)
     .then(e => { return e})
     .catch(e => { console.log('Error in upstash fetch:', e) })
 
+  // Remove if block if self-hosting
   if (!success) {
     return {
       statusCode: 429,
@@ -75,7 +75,7 @@ const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) =
       body: JSON.stringify({ message: summarized.data.choices[0].text }),
     }
   } catch (e) {
-    console.log("ERROR has occured", e.response);
+    console.log("ERROR has occured", e);
     return {
       statusCode: 500,
       headers: headers,
