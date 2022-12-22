@@ -4,64 +4,33 @@ import Card from '../components/Card.astro';
 ---
 
 <Layout title="Skimmr">
-	<main>
-		<h1>Welcome to <span class="text-gradient text-orange-400">Skimmr</span></h1>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="#"
-				title="Chrome"
-				body="Install Skimmr for Chrome."
-			/>
-			<Card
-				href="#"
-				title="Firefox"
-				body="Install Skimmr for Firefox. "
-			/>
-		</ul>
+	<main class="m-auto mt-14 p-0">
+		<h1 class="text-5xl font-extrabold m-0 pt-0 pb-14 text-center">
+      Welcome to 
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500">
+        Skimmr
+      </span>
+    </h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 mt-10 content-center">
+
+      <p class="text-2xl font-semibold ml-10 max-w-[28ch]">
+        Effortlessly skim through articles with our AI-powered browser extension.
+      </p>
+
+		  <ul role="list" class="mx-auto px-auto justify-end flex flex-col gap-4 max-w-[25ch]">
+		  	<Card
+		  		href="https://chrome.google.com/webstore/detail/skimmr/inchpcdcmkipekcoiimcdnfomdhdfcih"
+		  		title="Chrome"
+		  		body="Install Skimmr for Chrome."
+		  	/>
+		  	<Card
+		  		href="#"
+		  		title="Firefox"
+		  		body="Skimmr coming soon to Firefox"
+		  	/>
+		  </ul>
+    </div>
+
 	</main>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
